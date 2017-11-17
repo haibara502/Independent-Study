@@ -61,7 +61,11 @@ class StorycorpsSpider(CrawlSpider):
 		audio_source = response.xpath('//*[@id="gradient"]/div/div/section[5]/div[2]/audio/@src').extract()[0]
 		self.log("audio_source %s" % audio_source)
 		item['audio'] = audio_source[:audio_source.find('?')].encode('utf-8')
+		if (item['audio'][-2:] == "mp"):
+			item['audio'] += "3"
 		item['link'] = response.url
+		item['date'] = response.xpath('//main/article/header/div[@class="hidden"]/meta[@itemprop="datePublished"]/@content').extract().encode('utf-8')
+		self.log("%s" % item['date'])
 
 		all_script = response.xpath('//*[@class="modal-dialog"]/div[@class="modal-content"]/div[@class="modal-body"]/div[@class="transcript-container"]/p')
 #self.log("all_script %s" % all_script)
@@ -103,8 +107,12 @@ class StorycorpsSpider(CrawlSpider):
 				line = line + another_another_content
 			if (another_another_another_content != ""):
 				line = line + another_another_another_content
-			line = line + '\n'	
-			full_script.append(line)
+#line = line + '\n'	
+#if (line != "\n"):
+#if (line != "\t"):
+			line = line.replace("\n", "").replace("\t", "")
+			if (line != ""):
+				full_script.append(line)
 #		self.log("aaa")
 
 		item['script'] = full_script

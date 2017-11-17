@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import re
 import scrapy
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
@@ -79,8 +80,14 @@ class StorycorpsSpider(CrawlSpider):
 				line = line + another_another_content
 			if (another_another_another_content != ""):
 				line = line + another_another_another_content
-			line = line + '\n'
-			full_script.append(line)
+			line = line.strip('\n').rstrip('\t')
+			line = line.replace("\n", "").replace("\t", "")
+			if (line != ""):
+				if (line != "\t"):
+					if (line != "\n"):
+						full_script.append(line)
+#line = line + '\n'
+#full_script.append(line)
 #		self.log("aaa")
 
 		item['script'] = full_script
