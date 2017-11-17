@@ -15,3 +15,4 @@ class StorycorpsItem(Item):
 	link = Field()
 	audio = Field()
 	script = Field()
+	date = Field()

@@ -65,7 +65,8 @@ COOKIES_ENABLED = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'storycorps.pipelines.StorycorpsPipeline': 300,
+#    'storycorps.pipelines.StorycorpsPipeline': 300,
+	'storycorps.pipelines.StorycorpsJsonPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
