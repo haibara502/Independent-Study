@@ -14,7 +14,7 @@
 
 2. Supreme Court Dialogs Corpus
 	- link: https://confluence.cornell.edu/display/llresearch/Supreme+Court+Dialogs+Corpus 
-	- It contains many cases. For each carse, it records all the utterances. For each utterance, we can know the name of the speaker, the character of the speaker(justice, petitioner, respondent) and the gender of the speaker. If the speaker is justice, we can know the eventually vote of him. For each case, it also concludes how each justice vote and what the final desicion is. 
+	- It contains many cases. For each case, it records all the utterances. For each utterance, we can know the name of the speaker, the character of the speaker(justice, petitioner, respondent) and the gender of the speaker. If the speaker is justice, we can know the eventually vote of him. For each case, it also concludes how each justice vote and what the final decision is. 
 	- Statistics:
 		-51,498 utterances
 		-50,389 conversatonal exchanges
@@ -24,12 +24,12 @@
 	- What we may can do?
 		Predict the character of the next speaker,
 		Predict the gender of the speaker,
-		Given whole dialogue, predict the final decision of the case. Maybe can analyze in different ways: how they interact, who is more powerful, why the laywer(for petitioner or respondent) wins, how their process goes on...)
+		Given whole dialogue, predict the final decision of the case. Maybe can analyze in different ways: how they interact, who is more powerful, why the lawyer(for petitioner or respondent) wins, how their process goes on...)
 		Given all the utterances of one Justice, predict his vote
 
 3. Tennis Transcript and Commentary Dataset
 	- link: http://www.cs.cornell.edu/~liye/tennis.html 
-	- It records the post-match press conferences for tennis singles. We can know whether the athelete wins, the gender of him, the rank of him, his opponent in that match.
+	- It records the post-match press conferences for tennis singles. We can know whether the athlete wins, the gender of him, the rank of him, his opponent in that match.
 	- Statistics:
 		-6,467 interviews
 		-80,000+ questions
