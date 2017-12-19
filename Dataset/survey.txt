@@ -1,54 +1,54 @@
 1. Cornell Movie-Quotes Corpus
 	- link: http://www.cs.cornell.edu/~cristian/memorability.html 
-	- Basicly, it includes dialogs in movies. It records the person of the dialogue(Always between two people), the content, the name of the movie. For each person, it contains the name, gender and position on movie credits. For the movie, we can also know its rating on IMDB, its release year.
-	- Statistics:
-		-220,579 conversational exchanges
-		-10,292 pairs of movie characters
-		-in total 304,713 utteranes
-		-gender of 3,774 characters
-		-position on movie credits of 3,321 characters
-	- What we may can do:
-		For each dialogue, predict the person of next utterance, or
-		For each dialogue, predict the gender of next utterance
-		Can we predict how the movie is using the dialogues? (Maybe the length of the utterances, whether the two characters coordinate with each other?...)
+		- Basicly, it includes dialogs in movies. It records the person of the dialogue(Always between two people), the content, the name of the movie. For each person, it contains the name, gender and position on movie credits. For the movie, we can also know its rating on IMDB, its release year.
+			- Statistics:
+					-220,579 conversational exchanges
+							-10,292 pairs of movie characters
+									-in total 304,713 utteranes
+											-gender of 3,774 characters
+													-position on movie credits of 3,321 characters
+														- What we may can do:
+																For each dialogue, predict the person of next utterance, or
+																		For each dialogue, predict the gender of next utterance
+																				Can we predict how the movie is using the dialogues? (Maybe the length of the utterances, whether the two characters coordinate with each other?...)
 
-2. Supreme Court Dialogs Corpus
-	- link: https://confluence.cornell.edu/display/llresearch/Supreme+Court+Dialogs+Corpus 
-	- It contains many cases. For each case, it records all the utterances. For each utterance, we can know the name of the speaker, the character of the speaker(justice, petitioner, respondent) and the gender of the speaker. If the speaker is justice, we can know the eventually vote of him. For each case, it also concludes how each justice vote and what the final decision is. 
-	- Statistics:
-		-51,498 utterances
-		-50,389 conversatonal exchanges
-		-204 cases
-		-11 Justices
-		-311 other participants
-	- What we may can do?
-		Predict the character of the next speaker,
-		Predict the gender of the speaker,
-		Given whole dialogue, predict the final decision of the case. Maybe can analyze in different ways: how they interact, who is more powerful, why the lawyer(for petitioner or respondent) wins, how their process goes on...)
-		Given all the utterances of one Justice, predict his vote
+	2. Supreme Court Dialogs Corpus
+		- link: https://confluence.cornell.edu/display/llresearch/Supreme+Court+Dialogs+Corpus 
+			- It contains many cases. For each case, it records all the utterances. For each utterance, we can know the name of the speaker, the character of the speaker(justice, petitioner, respondent) and the gender of the speaker. If the speaker is justice, we can know the eventually vote of him. For each case, it also concludes how each justice vote and what the final decision is. 
+				- Statistics:
+						-51,498 utterances
+								-50,389 conversatonal exchanges
+										-204 cases
+												-11 Justices
+														-311 other participants
+															- What we may can do?
+																	Predict the character of the next speaker,
+																			Predict the gender of the speaker,
+																					Given whole dialogue, predict the final decision of the case. Maybe can analyze in different ways: how they interact, who is more powerful, why the lawyer(for petitioner or respondent) wins, how their process goes on...)
+																							Given all the utterances of one Justice, predict his vote
 
-3. Tennis Transcript and Commentary Dataset
-	- link: http://www.cs.cornell.edu/~liye/tennis.html 
-	- It records the post-match press conferences for tennis singles. We can know whether the athlete wins, the gender of him, the rank of him, his opponent in that match.
-	- Statistics:
-		-6,467 interviews
-		-80,000+ questions
-		-167 female player
-		-191 male player
-	- What we may can do:
-		Predict the outcome of the match given the conversation,
-		Predict the gender of the player, (This is mainly the reason that they made this dataset. They want to know whether the journalists have bias towards female players. What they did is to compare whether the conversation is game-related or not.)
-		Predict who is going to say the next sentence
+																							3. Tennis Transcript and Commentary Dataset
+																								- link: http://www.cs.cornell.edu/~liye/tennis.html 
+																									- It records the post-match press conferences for tennis singles. We can know whether the athlete wins, the gender of him, the rank of him, his opponent in that match.
+																										- Statistics:
+																												-6,467 interviews
+																														-80,000+ questions
+																																-167 female player
+																																		-191 male player
+																																			- What we may can do:
+																																					Predict the outcome of the match given the conversation,
+																																							Predict the gender of the player, (This is mainly the reason that they made this dataset. They want to know whether the journalists have bias towards female players. What they did is to compare whether the conversation is game-related or not.)
+			Predict who is going to say the next sentence
 
---------------------
-One interesting dataset but not dialogue
-* Cornell Movie-Quotes Corpus
-	- link: http://www.cs.cornell.edu/~cristian/memorability.html
-	- It extracts many memorable quotes from IMDB. And for each quote, it will find another non-memorable quote which is near the memorable one from the movie and the two quotes have the same length and same speaker. They also provide the conversation from which the memorable quote appears.
-	- Statistics:
-		-894041 script lines
-		-1068 movie scripts
-		-6282 one-line memorable quotes
-		-2197 Pair of memorable and non-memorable quotes
-	- Why it is interesting
-		It focuses on the comparison of memorable and non-memorable lines. It does contains scripts of the conversations, but what they tag of the conversation is only about the speaker of each utterance. If the dialogue is more important, maybe the dataset of dialogue of movie is more useful.
+			--------------------
+			One interesting dataset but not dialogue
+			* Cornell Movie-Quotes Corpus
+				- link: http://www.cs.cornell.edu/~cristian/memorability.html
+					- It extracts many memorable quotes from IMDB. And for each quote, it will find another non-memorable quote which is near the memorable one from the movie and the two quotes have the same length and same speaker. They also provide the conversation from which the memorable quote appears.
+						- Statistics:
+								-894041 script lines
+										-1068 movie scripts
+												-6282 one-line memorable quotes
+														-2197 Pair of memorable and non-memorable quotes
+															- Why it is interesting
+																	It focuses on the comparison of memorable and non-memorable lines. It does contains scripts of the conversations, but what they tag of the conversation is only about the speaker of each utterance. If the dialogue is more important, maybe the dataset of dialogue of movie is more useful.
