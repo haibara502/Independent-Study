@@ -34,6 +34,7 @@ utterances = []
 speakers = []
 genders = []
 valid = 0
+total = 0
 while 1:
 	line = convers_file.readline()
 	if not line:
@@ -41,6 +42,9 @@ while 1:
 	contents = line.split(" +++$+++ ", 14)
 #	print contents
 	valid = valid + 1
+
+	total = total + 1
+	print total
 
 	#If this utterance is the beginning of the conversation
 	new_conversation = contents[2]
@@ -81,6 +85,8 @@ while 1:
 	print valid
 	if valid <= 1:
 		continue
+	if (gender < 0):
+		continue
 
 	output_x.write(str(valid - 1) + '\n')
 	for i in range(1, total_utterance):
@@ -88,4 +94,4 @@ while 1:
 			continue
 		output_x.write(speakers[i - 1] + '\n')
 		output_x.write(utterances[i - 1] + '\n')
-		output_y.write(str(genders[i]) + '\n')
+	output_y.write(str(gender) + '\n')
