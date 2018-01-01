@@ -17,7 +17,7 @@ WORD_EMBEDDING_DIM = 100
 EMBEDDING_DIM = 100
 VALIDATION_SPLIT = 0.1
 NUMBER_OF_UTTERANCE = 50
-SENTENCE_LENGTH = 500
+SENTENCE_LENGTH = 900
 NUM_HIDDEN = 50
 NUMBER_OF_NAMES = 327
 NAME_EMBEDDING_SIZE = 100
@@ -25,30 +25,6 @@ LABEL_SIZE = 2
 UTTERANCE_LENGTH = 50
 WORD_NUMBER = 10787
 VOCABULARY_SIZE = 10788
-
-def f1(y_true, y_pred):
-	def recall(y_true, y_pred):
-		true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
-		possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
-		recall = true_positives / (possible_positives + K.epsilon())
-		return recall
-
-	def precision(y_true, y_pred):
-		"""Precision metric.
-
-		Only computes a batch-wise average of precision.
-
-		Computes the precision, a metric for multi-label classification of
-		how many selected items are relevant.
-		"""
-		true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
-		predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
-		precision = true_positives / (predicted_positives + K.epsilon())
-		return precision
-	
-	precision = precision(y_true, y_pred)
-	recall = recall(y_true, y_pred)
-	return 2*((precision*recall)/(precision+recall))
 
 print('Load pretrained word vectors.')
 
@@ -162,10 +138,6 @@ print scripts.shape
 print "names shpae"
 print names.shape
 
-
-for item in scripts:
-	if len(item) > 305:
-		print len(item)
 num_validation_samples = int(VALIDATION_SPLIT * scripts.shape[0])
 
 scripts_train = scripts[:-num_validation_samples]
@@ -208,8 +180,8 @@ model.summary()
 
 utterance_input = Concatenate(axis = -1)([script_output, name_output])
 
-output = Dense(NUM_HIDDEN, activation = 'sigmoid')(utterance_input)
-output = Dense(LABEL_SIZE, activation='softmax')(output)
+#output = Dense(NUM_HIDDEN, activation ='sigmoid')(utterance_input)
+output = Dense(LABEL_SIZE, activation='softmax')(utterance_input)
 print output.shape
 
 #model = Model(inputs=[script_input, name_input], outputs=output)
@@ -226,6 +198,11 @@ print labels_train.shape
 
 model.fit([scripts_train, names_train], labels_train, epochs=2, batch_size=40)
 score, acc = model.evaluate([scripts_valid, names_valid], labels_valid, batch_size = 20)
+
+OUTPUT_FILE = open("output.txt", "w")
+prediction = model.predict([scripts_train, names_train], batch_size = 40, verbose = 0)
+for item in prediction:
+	OUTPUT_FILE.write(np.argmax(item))
 
 print('Test score:', score)
 print('Test accuracy:', acc)
