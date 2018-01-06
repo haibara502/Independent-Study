@@ -103,9 +103,13 @@ while 1:
 	if len(sentence) <= SENTENCE_LENGTH:
 		labels.append(np.array(label))
 
+	if len(sentence) > 1000:
+		print utterance
+
 MAX_LABEL = 2
 
 print('Reading ends.')
+exit()
 
 labels = to_categorical(labels, num_classes = MAX_LABEL)
 
@@ -157,6 +161,10 @@ labels_valid = labels[-num_validation_samples:]
 print 'script shape'
 print scripts.shape
 
+standard_output = open("std.txt", "w")
+for item in labels_valid:
+	standard_output.write(str(item) + '\n')
+
 script_input = Input(shape=(SENTENCE_LENGTH, ))
 script_embedding = Embedding(VOCABULARY_SIZE, output_dim = EMBEDDING_DIM, weights = [word_vector_matrix])(script_input) 
 model = Model(inputs=script_input, outputs=script_embedding)
@@ -199,10 +207,15 @@ print labels_train.shape
 model.fit([scripts_train, names_train], labels_train, epochs=2, batch_size=40)
 score, acc = model.evaluate([scripts_valid, names_valid], labels_valid, batch_size = 20)
 
-OUTPUT_FILE = open("output.txt", "w")
-prediction = model.predict([scripts_train, names_train], batch_size = 40, verbose = 0)
-for item in prediction:
-	OUTPUT_FILE.write(np.argmax(item))
-
 print('Test score:', score)
 print('Test accuracy:', acc)
+
+OUTPUT_FILE = open("output.txt", "w")
+prediction = model.predict([scripts_valid, names_valid], batch_size = 40, verbose = 0)
+for item in prediction:
+	print item
+	if item[0] > item[1]:
+		OUTPUT_FILE.write("0\n")
+	else:
+		OUTPUT_FILE.write("1\n")
+
